@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero Kick - Energy Drink Taste Without The Crash</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a3e 0%, #0f0f23 100%);
+            color: white;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #1e1e4a 0%, #2d1b4e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(144, 238, 144, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #90EE90 0%, #7CFC00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(144, 238, 144, 0.3);
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: #90EE90;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #90EE90 0%, #7CFC00 100%);
+            color: #0f0f23;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(144, 238, 144, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(144, 238, 144, 0.5);
+        }
+
+        /* Problem Section */
+        .problem-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #90EE90;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            width: 100%;
+        }
+
+        .problem-card {
+            background: rgba(45, 27, 78, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(144, 238, 144, 0.2);
+            transition: all 0.3s ease;
+            width: 100%;
+            min-width: 0;
+            word-wrap: break-word;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            border-color: #90EE90;
+            box-shadow: 0 10px 30px rgba(144, 238, 144, 0.2);
+        }
+
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            color: #90EE90;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Product Section */
+        .product-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #2d1b4e 0%, #1e1e4a 100%);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 50px;
+            width: 100%;
+        }
+
+        .product-image {
+            background: linear-gradient(135deg, rgba(144, 238, 144, 0.1) 0%, rgba(124, 252, 0, 0.1) 100%);
+            border-radius: 20px;
+            padding: 60px 20px;
+            text-align: center;
+            border: 2px solid rgba(144, 238, 144, 0.3);
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 1.2rem;
+            color: #90EE90;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .product-features {
+            list-style: none;
+            width: 100%;
+        }
+
+        .product-features li {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(144, 238, 144, 0.2);
+            font-size: 1.1rem;
+            word-wrap: break-word;
+            min-width: 0;
+        }
+
+        .product-features li:before {
+            content: "✓";
+            color: #90EE90;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
+        }
+
+        .faq-item {
+            background: rgba(45, 27, 78, 0.5);
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid rgba(144, 238, 144, 0.2);
+        }
+
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(144, 238, 144, 0.1);
+            color: #90EE90;
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 25px;
+            max-height: 500px;
+        }
+
+        .faq-icon {
+            color: #90EE90;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon.active {
+            transform: rotate(180deg);
+        }
+
+        /* Contact Form Section */
+        .contact-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #2d1b4e 0%, #1e1e4a 100%);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-top: 50px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-image {
+            background: linear-gradient(135deg, rgba(144, 238, 144, 0.1) 0%, rgba(124, 252, 0, 0.1) 100%);
+            border-radius: 20px;
+            padding: 60px 20px;
+            text-align: center;
+            border: 2px solid rgba(144, 238, 144, 0.3);
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 1.2rem;
+            color: #90EE90;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .form-container {
+            background: rgba(45, 27, 78, 0.5);
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid rgba(144, 238, 144, 0.2);
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #90EE90;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(15, 15, 35, 0.5);
+            border: 2px solid rgba(144, 238, 144, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #90EE90;
+            box-shadow: 0 0 15px rgba(144, 238, 144, 0.2);
+        }
+
+        .submit-button {
+            width: 100%;
+            background: linear-gradient(135deg, #90EE90 0%, #7CFC00 100%);
+            color: #0f0f23;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(144, 238, 144, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 0;
+            background: #0f0f23;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #90EE90;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border: 2px solid rgba(144, 238, 144, 0.3);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(144, 238, 144, 0.1);
+            border-color: #90EE90;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .problems-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image,
+            .contact-image {
+                padding: 40px 20px;
+                min-height: 250px;
+            }
+
+            .form-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="logo">ZERO KICK</h1>
+            <p class="tagline">Вкус, который ты любишь. Без последствий.</p>
+            <p class="hero-description">
+                Почувствуй яркий, электризующий вкус энергетика без дрожи в руках, упадка сил и бессонных ночей. Просто чистое удовольствие.
+            </p>
+            <button class="cta-button" onclick="document.querySelector('.contact-section').scrollIntoView({behavior: 'smooth'})">
+                Получить ранний доступ
+            </button>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">Ты любишь вкус. Но ненавидишь побочные эффекты.</h2>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">😰</div>
+                    <h3>Тревога и дрожь</h3>
+                    <p>Неприятное трясущееся чувство от избытка кофеина убивает концентрацию и портит настроение.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">💤</div>
+                    <h3>Упадок сил</h3>
+                    <p>Резкое падение энергии оставляет тебя более уставшим, чем до того, как ты выпил.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🌙</div>
+                    <h3>Проблемы со сном</h3>
+                    <p>Один напиток днём — и ты ворочаешься в постели до 3 часов ночи.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">💔</div>
+                    <h3>Вред здоровью</h3>
+                    <p>Избыток кофеина и сахара бьёт по сердцу и общему самочувствию.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🚫</div>
+                    <h3>Нельзя пить когда угодно</h3>
+                    <p>Приходится планировать время для энергетика, иначе рискуешь испортить весь день.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">😔</div>
+                    <h3>Скучаешь по вкусу</h3>
+                    <p>Обычная газировка совсем не то. Хочется именно того самого вкуса энергетика.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section class="product-section">
+        <div class="container">
+            <h1 class="section-title">Представляем Zero Kick!</h1>
+            <div class="product-grid">
+                <div class="product-image">
+                    <img src="can.png" alt="Тёмно-синяя и фиолетовая банка с салатовыми акцентами" loading="lazy">
+                </div>
+                <div>
+                    <p style="font-size: 1.2rem; margin-bottom: 30px;">
+                        Первая в мире газировка, которая дарит настоящий вкус энергетика без каких-либо стимулирующих свойств. Пей утром, днём или ночью — когда захочется.
+                    </p>
+                    <ul class="product-features">
+                        <li>Аутентичный вкус энергетического напитка</li>
+                        <li>Ноль кофеина, никакой дрожи</li>
+                        <li>Без упадка сил и нарушений сна</li>
+                        <li>Идеально в любое время суток</li>
+                        <li>Освежающая газировка</li>
+                        <li>Никакого вреда, только отличный вкус</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Вопросы и ответы</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Zero Kick по вкусу точно как энергетик?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Мы постоянно работаем над улучшением вкусовых качеств, стараясь приблизиться к вкусу популярных энергетических напитков. И вы можете помочь нам в этом пути процессе, дав обратную связь!
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Есть ли в Zero Kick кофеин?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Абсолютно ноль кофеина. Никакого таурина, гуараны или стимуляторов. Только вкус.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Можно пить перед сном?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Да! Поскольку в составе нет кофеина и стимуляторов, можешь наслаждаться Zero Kick в любое время суток, не переживая за свой сон.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Когда Zero Kick будет в продаже?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Мы сейчас на стадии разработки. Оставь контакты ниже, чтобы первым узнать о старте продаж и получить эксклюзивные предложения раннего доступа!
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Zero Kick без сахара?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Мы разрабатываем несколько версий под разные предпочтения. Подпишись, чтобы узнать обо всех доступных вариантах!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h1 class="section-title">Стань первым, кто попробует Zero Kick!</h1>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 30px;">
+                Присоединяйся к списку ожидания и получи эксклюзивный ранний доступ, специальные цены на старте и внутренние обновления.
+            </p>
+            <div class="contact-wrapper">
+                <div class="contact-image">
+                    <img src="can.png" alt="Девушка пьёт газировку Zero Kick" loading="lazy">
+                </div>
+                <div class="form-container">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Имя *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон (необязательно)</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Что тебя больше всего привлекает в Zero Kick?</label>
+                            <textarea id="message" name="message" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Записаться в список ожидания</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <h3 style="color: #90EE90; margin-bottom: 20px;">Связаться с нами</h3>
+            <div class="social-links">
+                <a href="https://t.me/boGGyPop" class="social-link">
+                    <span>📱</span> Telegram
+                </a>
+                <a href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=10ej1cd5" class="social-link">
+                    <span>📸</span> Instagram
+                </a>
+            </div>
+            <p style="margin-top: 40px; opacity: 0.7;">
+                © 2025 Zero Kick. Все права защищены.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon');
+            
+            answer.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would normally send the data to your backend
+            // For now, we'll just show a success message
+            
+            alert('Спасибо, что присоединился к списку ожидания! Мы скоро свяжемся с тобой с эксклюзивными обновлениями о Zero Kick.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
